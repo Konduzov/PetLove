@@ -1,0 +1,118 @@
+<!--<button ng-click="count=count+1">(Home) Click me {{count}}</button>-->
+<!--<p style="text-color:#fff">{{count}}</p>-->
+
+<div>
+    <h3>Sitters</h3 >
+    <p>City: <input type="text" ng-model="citySearch"></p>
+
+    <table border="1" width="80%">
+        <tr>
+            <th ng-click="orderByMe('id'); sortReverse = !sortReverse">Id</th>
+            <th ng-click="orderByMe('name'); sortReverse = !sortReverse">Name</th>
+            <th ng-click="orderByMe('city'); sortReverse = !sortReverse">City</th>
+
+        </tr>
+        <tr ng-repeat="currentSitter in sitters | cityFilter: citySearch">
+            <td>{{currentSitter.id}}</td>
+            <td>{{currentSitter.name}}</td>
+            <td>{{currentSitter.city}}</td>
+            <td><button ng-click="showEditSitterFormFunc(currentSitter)">Edit</button></td>
+            <td><button ng-click="deleteSitter(currentSitter.id)">Delete</button></td>
+        </tr>
+    </table>
+
+    <br>
+    <div ng-show="showEditSitterForm">
+        <h4>Edit Sitter</h4>
+        <form novalidate>
+            Name:<br>
+            <input type="text" ng-model="editSitter.name"><br>
+            City:<br>
+            <input type="text" ng-model="editSitter.city">
+            <br><br>
+            <button ng-click="editSitterFunc(editSitter, editSitter.id)">SAVE</button>
+        </form>
+    </div>
+</div>
+<br>
+
+<h3>Owners</h3>
+<div>
+    <p>City: <input type="text" ng-model="citySearch2"></p>
+    <br>
+
+    <table border="1" width="80%">
+        <tr>
+            <th ng-click="orderByMe('id'); sortReverse = !sortReverse">Id</th>
+            <th ng-click="orderByMe('name'); sortReverse = !sortReverse">Name</th>
+            <th ng-click="orderByMe('city'); sortReverse = !sortReverse">City</th>
+
+        </tr>
+        <tr ng-repeat="owner in owners | cityFilter: citySearch2">
+            <td>{{owner.id}}</td>
+            <td>{{owner.name}}</td>
+            <td>{{owner.city}}</td>
+            <td><button ng-click="showEditOwnerFormFunc(owner)">Edit</button></td>
+            <td><button ng-click="deleteOwner(owner.id)">Delete</button></td>
+        </tr>
+    </table>
+
+    <br>
+    <div ng-show="showEditOwnerForm">
+        <h4>Edit Owner</h4>
+        <form novalidate>
+            Name:<br>
+            <input type="text" ng-model="editOwner.name"><br>
+            City:<br>
+            <input type="text" ng-model="editOwner.city">
+            <br><br>
+            <button ng-click="editOwnerFunc(editOwner, editOwner.id)">SAVE</button>
+        </form>
+    </div>
+</div>
+<br>
+
+<div>
+    <h3>Bookings</h3>
+    <p>Sitter: <input type="text" ng-model="sitterSearch"></p>
+    <p>Owner: <input type="text" ng-model="ownerSearch"></p>
+    <br>
+
+    <table border="1" width="80%">
+        <tr>
+            <th ng-click="orderByMe('id'); sortReverse = !sortReverse">Id</th>
+            <th ng-click="orderByMe('id'); sortReverse = !sortReverse">Sitter Id</th>
+            <th ng-click="orderByMe('name'); sortReverse = !sortReverse">Sitter Name</th>
+            <th ng-click="orderByMe('id'); sortReverse = !sortReverse">Owner Id</th>
+            <th ng-click="orderByMe('name'); sortReverse = !sortReverse">Owner Name</th>
+            <th ng-click="orderByMe('date'); sortReverse = !sortReverse">Date</th>
+
+
+        </tr>
+        <tr ng-repeat="booking in bookings | sitterFilter: sitterSearch | ownerFilter: ownerSearch">
+            <td>{{booking.id}}</td>
+            <td>{{booking.sitter.id}}</td>
+            <td>{{booking.sitter.name}}</td>
+            <td>{{booking.owner.id}}</td>
+            <td>{{booking.owner.name}}</td>
+            <td>{{booking.date}}</td>
+            <td><button ng-click="showEditBookingFormFunc(booking)">Edit</button></td>
+            <td><button ng-click="deleteBooking(booking.id)">Delete</button></td>
+        </tr>
+    </table>
+
+    <br>
+    <div ng-show="showEditBookingForm">
+        <h4>Edit Booking</h4>
+        <form novalidate>
+            Sitter Id:<br>
+            <input type="text" ng-model="editBooking.sitter.id"><br>
+            Owner Id:<br>
+            <input type="text" ng-model="editBooking.owner.id"><br>
+            Date:<br>
+            <input type="text" ng-model="editBooking.date">
+            <br><br>
+            <button ng-click="editBookingFunc(editBooking, editBooking.id)">SAVE</button>
+        </form>
+    </div>
+</div>
