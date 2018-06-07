@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Registration</title>
+<meta charset="UTF-8">
+<title>Registration</title>
 </head>
 <body>
-<div>
-    <form novalidate>
-        <h3>Register</h3>
-        Name:<br>
-        <input type="text" ng-model="user.name"><br>
-        City:<br>
-        <input type="text" ng-model="user.city">
-        <br><br>
-        <form>
-            <input type="radio" ng-model="userType" value="sitter">Sitter
-            <input type="radio" ng-model="userType" value="owner">Owner
-        </form>
-        <br><br>
-        <button ng-click="register(userType)">REGISTER</button>
-    </form>
-</div>
+	<div>
+		<form novalidate>
+			<h3>Register</h3>
+			Name:<br> <input type="text" ng-model="user.name"><br>
+			City:<br> <input type="text" ng-model="user.city"> <br>
+			<br>
+			<form>
+				<input type="radio" ng-model="userType" value="sitter">Sitter
+				<input type="radio" ng-model="userType" value="owner">Owner
+			</form>
+			<br> <br>
+			<button ng-click="register(userType)">REGISTER</button>
+		</form>
+	</div>
 </body>
 </html>

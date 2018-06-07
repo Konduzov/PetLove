@@ -5,6 +5,11 @@ var app = angular.module('tutorialWebApp', [
     'ngRoute'
 ]);
 
+
+
+
+
+
 /**
  * Configure the Routes
  */
@@ -12,6 +17,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
     // Home
         .when("/", {templateUrl: "partials/home.html", controller: "PageCtrl"})
+        .when("/index", {templateUrl: "partials/home.html", controller: "PageCtrl"})
         // Pages
         .when("/about", {templateUrl: "partials/about.html", controller: "PageCtrl"})
         .when("/faq", {templateUrl: "partials/faq.html", controller: "PageCtrl"})
@@ -113,6 +119,25 @@ app.controller('PageCtrl', function ($scope, $route, $location, $http) {
                 }
             );
     }
+    
+    $scope.createBookingFunc = function (owner, sitter, date) {
+    	console.log("Creating booking")
+    	booking = {'owner':owner, 'sitter':sitter, 'date':date}
+        $http.post("/bookings", booking)
+            .then(
+                function (response) {
+                    console.log("Booking created.");
+                    $http.get('/bookings').then(function (response) {
+                        $scope.bookings = response.data;
+                    });
+                  // $scope.user = {};
+                },
+                function(errResponse){
+                    console.error("Error while creating User");
+                }
+            );
+    }
+ 
 
     $scope.deleteBooking = function (id) {
         $http.delete("/bookings/"+id)
